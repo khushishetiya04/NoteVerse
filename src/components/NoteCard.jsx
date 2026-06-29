@@ -1,8 +1,8 @@
-export default function NoteCard() {
+export default function NoteCard({note}) {
     return (
         <>
             <div>
-                <p>My First Note</p>
+                <p>{note}</p>
             </div>
         </>
     )
