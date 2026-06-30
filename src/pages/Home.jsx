@@ -9,11 +9,13 @@ export default function Home () {
     const addNote = (text) => {
         setNotes((prev) => [...prev, text]);
     };
+ 
+
     return (
         <>
             <Navbar/>
             <NoteInput onAdd={addNote}/>
-            <NoteList notes={notes}/>
+            <NoteList notes={notes} setNotes={setNotes}/>
         </>
     );
 }
