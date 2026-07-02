@@ -1,22 +1,19 @@
-import { useState } from "react";
-
-export default function NoteInput({onAdd}) {
-    const [text, setText] = useState("");
+export default function NoteInput({onAdd, editingText, setEditingText, editingIndex}) {
 
     let handleChange = (event) => {
-        setText(event.target.value);
+        setEditingText(event.target.value);
     };
 
     let handleAdd = () => {
-        if(text.trim() === "") return;
-        onAdd(text);
-        setText("");
+        if(editingText.trim() === "") return;
+        onAdd(editingText);
+        setEditingText("");
     };
     return (
         <>
             <div>
-                <input placeholder="Write note...." type="text" value={text} onChange={handleChange}/>
-                <button onClick={handleAdd}>Add</button>
+                <input placeholder="Write note...." type="text" value={editingText} onChange={handleChange}/>
+                <button onClick={handleAdd}> {editingIndex !== null ? "Edit Note" : "Add Note"} </button>
             </div>
         </>
     );

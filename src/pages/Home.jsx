@@ -5,10 +5,26 @@ import NoteList from "../components/NoteList";
 
 export default function Home () {
     const[notes, setNotes] = useState( JSON.parse(localStorage.getItem("notes")) || []);
+    const [editingIndex, setEditingIndex] = useState(null);
+    const [editingText, setEditingText] = useState("");
 
     const addNote = (text) => {
-        setNotes((prev) => [...prev, text]);
+        if(editingIndex !== null){
+            const updatedNotes = [...notes];
+            updatedNotes[editingIndex] = text;
+            setNotes(updatedNotes);
+            setEditingIndex(null);
+            setEditingText("");
+
+        }else{
+            setNotes((prevNotes) => [...prevNotes, text]);
+        }
     };
+
+    const editNote = (index, note) => {
+        setEditingIndex(index);
+        setEditingText(note);
+    }
 
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
@@ -18,8 +34,8 @@ export default function Home () {
     return (
         <>
             <Navbar/>
-            <NoteInput onAdd={addNote}/>
-            <NoteList notes={notes} setNotes={setNotes}/>
+            <NoteInput onAdd={addNote} editingText={editingText} setEditingText={setEditingText} editingIndex={editingIndex}/>
+            <NoteList notes={notes} setNotes={setNotes} onEdit={editNote}/>
         </>
     );
 }
