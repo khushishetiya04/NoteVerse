@@ -6,39 +6,58 @@ import SearchBar from "../components/SearchBar";
 
 export default function Home () {
     const[notes, setNotes] = useState( JSON.parse(localStorage.getItem("notes")) || []);
-    const [editingIndex, setEditingIndex] = useState(null);
+    const [editingId, setEditingId] = useState(null);
     const [editingText, setEditingText] = useState("");
     const [searchText, setSearchText] = useState("");
 
     const addNote = (text) => {
-        if(editingIndex !== null){
-            const updatedNotes = [...notes];
-            updatedNotes[editingIndex] = text;
+        if(editingId !== null){
+            const updatedNotes = notes.map((note) => note.id === editingId ? 
+                { ...note, text, createdAt: new Date().toLocaleString() }
+                : note
+            );
             setNotes(updatedNotes);
-            setEditingIndex(null);
+            setEditingId(null);
             setEditingText("");
 
         }else{
-            setNotes((prevNotes) => [...prevNotes, text]);
+            setNotes((prevNotes) => [...prevNotes, {id: Date.now(), text, createdAt: new Date().toLocaleString()}]);
         }
     };
 
-    const editNote = (index, note) => {
-        setEditingIndex(index);
-        setEditingText(note);
+    const editNote = (id, note) => {
+        setEditingId(id);
+        setEditingText(note.text);
     }
 
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
     }, [notes]);
 
+    const filteredNotes = notes.filter((note) => note.text.toLowerCase().includes(searchText.toLowerCase()));
 
     return (
         <>
             <Navbar/>
-            <SearchBar searchText={searchText} setSearchText={setSearchText}/>
-            <NoteInput onAdd={addNote} editingText={editingText} setEditingText={setEditingText} editingIndex={editingIndex}/>
-            <NoteList notes={notes} setNotes={setNotes} onEdit={editNote} searchText={searchText}/>
+            <SearchBar 
+                searchText={searchText} 
+                setSearchText={setSearchText}
+            />
+            <p>
+                {searchText? `Showing ${filteredNotes.length} of ${notes.length} notes` 
+                : `Total Notes: ${notes.length}`}
+            </p>
+            <NoteInput 
+                onAdd={addNote} 
+                editingText={editingText} 
+                setEditingText={setEditingText} 
+                editingId={editingId}
+            />
+            <NoteList 
+                notes={filteredNotes} 
+                setNotes={setNotes} 
+                onEdit={editNote} 
+            />
         </>
     );
 }

@@ -1,4 +1,4 @@
-export default function NoteInput({onAdd, editingText, setEditingText, editingIndex}) {
+export default function NoteInput({onAdd, editingText, setEditingText, editingId}) {
 
     let handleChange = (event) => {
         setEditingText(event.target.value);
@@ -12,8 +12,15 @@ export default function NoteInput({onAdd, editingText, setEditingText, editingIn
     return (
         <>
             <div>
-                <input placeholder="Write note...." type="text" value={editingText} onChange={handleChange}/>
-                <button onClick={handleAdd}> {editingIndex !== null ? "Edit Note" : "Add Note"} </button>
+                <input 
+                    placeholder="Write note...." 
+                    type="text" 
+                    value={editingText} 
+                    onChange={handleChange}
+                />
+                <button onClick={handleAdd}> 
+                    {editingId !== null ? "Edit Note" : "Add Note"} 
+                </button>
             </div>
         </>
     );
