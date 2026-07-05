@@ -1,6 +1,6 @@
 import NoteCard from "./NoteCard";
 
-export default function NoteList({notes, setNotes, onEdit}) {
+export default function NoteList({notes, setNotes, onEdit, onPin}) {
 
     const deleteNote = (id) => {
         setNotes((prevNotes) => (prevNotes).filter((note) => note.id !== id));
@@ -17,6 +17,7 @@ export default function NoteList({notes, setNotes, onEdit}) {
                                 key={note.id} 
                                 onDelete={() => deleteNote(note.id)} 
                                 onEdit={()=> onEdit(note.id, note)}
+                                onPin={()=> onPin(note.id)}
                             /> 
                         ))
                 }               
