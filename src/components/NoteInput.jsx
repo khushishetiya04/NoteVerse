@@ -1,27 +1,41 @@
-export default function NoteInput({onAdd, editingText, setEditingText, editingId}) {
+import "./NoteInput.css";
 
-    let handleChange = (event) => {
+export default function NoteInput({
+    onAdd,
+    editingText,
+    setEditingText,
+    editingId,
+}) {
+
+    const handleChange = (event) => {
         setEditingText(event.target.value);
     };
 
-    let handleAdd = () => {
-        if(editingText.trim() === "") return;
+    const handleAdd = () => {
+        if (editingText.trim() === "") return;
+
         onAdd(editingText);
         setEditingText("");
     };
+
     return (
-        <>
-            <div>
-                <input 
-                    placeholder="Write note...." 
-                    type="text" 
-                    value={editingText} 
-                    onChange={handleChange}
-                />
-                <button onClick={handleAdd}> 
-                    {editingId !== null ? "Edit Note" : "Add Note"} 
-                </button>
-            </div>
-        </>
+        <div className="note-input-container">
+
+            <textarea
+                className="note-input"
+                rows="3"
+                placeholder="Write your note, idea or study point..."
+                value={editingText}
+                onChange={handleChange}
+            />
+
+            <button
+                className="add-note-btn"
+                onClick={handleAdd}
+            >
+                {editingId !== null ? "✏ Update Note" : "+ Add Note"}
+            </button>
+
+        </div>
     );
 }

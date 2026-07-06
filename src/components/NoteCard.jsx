@@ -1,14 +1,36 @@
-export default function NoteCard({note, onDelete, onEdit, onPin}) {
+import "./NoteCard.css";
+
+export default function NoteCard({ note, onDelete, onEdit, onPin }) {
     return (
-        <>
-            <div>
-                <p>{note.pinned && "📌 "}{note.text}</p>
-                <p>Created At: {new Date(note.createdAt).toLocaleString()}</p>
-                <button onClick={onPin}>{note.pinned? "Unpin" : "Pin"}</button> &nbsp;&nbsp;
-                <button onClick={onDelete}>Delete</button> &nbsp;&nbsp;
-                <button onClick={onEdit}>Edit</button>
-                <hr></hr>
+        <div className="note-card">
+
+            <div className="note-header">
+                <h3>
+                    {note.pinned && "📌 "}
+                    {note.text}
+                </h3>
+
+                <p className="note-date">
+                    🕒 {new Date(note.createdAt).toLocaleString()}
+                </p>
             </div>
-        </>
-    )
+
+            <div className="note-actions">
+
+                <button className="pin-btn" onClick={onPin}>
+                    {note.pinned ? "📌 Unpin" : "📌 Pin"}
+                </button>
+
+                <button className="edit-btn" onClick={onEdit}>
+                    ✏ Edit
+                </button>
+
+                <button className="delete-btn" onClick={onDelete}>
+                    🗑 Delete
+                </button>
+
+            </div>
+
+        </div>
+    );
 }

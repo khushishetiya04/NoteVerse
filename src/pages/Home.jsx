@@ -1,3 +1,4 @@
+import "./Home.css";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import NoteInput from "../components/NoteInput";
@@ -53,33 +54,64 @@ export default function Home () {
         const updatedNotes = notes.map((note) => note.id === id ?
             {...note, pinned: !note.pinned} : note);
         setNotes(updatedNotes);
-    }
+    };
+
+    const clearAllNotes = () => {
+        const confirmDelete = window.confirm("Are you sure you want to delete all notes?");
+        if(confirmDelete){
+            setNotes([]);
+        }
+    };
 
     return (
         <>
-            <Navbar/>
-            <SearchBar 
-                searchText={searchText} 
-                setSearchText={setSearchText}
-            />
-            <p>
-                {searchText? `Showing ${filteredNotes.length} of ${notes.length} notes` 
-                : `Total Notes: ${notes.length}`}
-            </p>
-            <button onClick={() => setSortOrder("newest")} style={{fontWeight: sortOrder === "newest" ? "bold" : "normal"}}>Newest First</button>&nbsp;&nbsp;
-            <button onClick={() => setSortOrder("oldest")} style={{fontWeight: sortOrder === "oldest" ? "bold" : "normal"}}>Oldest First</button>
-            <NoteInput 
-                onAdd={addNote} 
-                editingText={editingText} 
-                setEditingText={setEditingText} 
-                editingId={editingId}
-            />
-            <NoteList 
-                notes={sortedNotes} 
-                setNotes={setNotes} 
-                onEdit={editNote} 
-                onPin={togglePin}
-            />
+            <div className="home-container">
+                <div className="app-card">
+                    <Navbar/>
+                    <SearchBar 
+                        searchText={searchText} 
+                        setSearchText={setSearchText}
+                    />
+                    <div className="toolbar">
+                        <div className="note-count">
+                            📄 {searchText
+                                ? `${filteredNotes.length} of ${notes.length} Notes`
+                                : `${notes.length} Notes`}
+                        </div>
+                        <div className="toolbar-buttons">
+                            <button
+                                className={sortOrder === "newest" ? "active-sort" : ""}
+                                onClick={() => setSortOrder("newest")}
+                            >
+                                Newest
+                            </button>
+
+                            <button
+                                className={sortOrder === "oldest" ? "active-sort" : ""}
+                                onClick={() => setSortOrder("oldest")}
+                            >
+                                Oldest
+                            </button>
+
+                            <button className="clear-btn" onClick={clearAllNotes} disabled={notes.length === 0}>
+                                🗑 Clear All
+                            </button>
+                        </div>
+                    </div>
+                    <NoteInput 
+                        onAdd={addNote} 
+                        editingText={editingText} 
+                        setEditingText={setEditingText} 
+                        editingId={editingId}
+                    />
+                    <NoteList 
+                        notes={sortedNotes} 
+                        setNotes={setNotes} 
+                        onEdit={editNote} 
+                        onPin={togglePin}
+                    />
+                </div>
+            </div>
         </>
     );
 }

@@ -1,0 +1,45 @@
+.note-input-container{
+    margin:30px 0;
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.note-input{
+    flex:1;
+    padding:15px 18px;
+    font-size:16px;
+    font-family:inherit;
+    border:1px solid #D1D5DB;
+    border-radius:14px;
+    outline:none;
+    transition:.25s;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.note-input:focus{
+    border-color:#4F46E5;
+    box-shadow:
+    0 0 0 4px rgba(79,70,229,.15);
+}
+
+.add-note-btn{
+    padding:15px 24px;
+    border:none;
+    border-radius:14px;
+    background:#4F46E5;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.add-note-btn:hover{
+    background:#4338CA;
+    transform:translateY(-2px);
+}
+
+.add-note-btn:active{
+    transform:scale(.98);
+}
