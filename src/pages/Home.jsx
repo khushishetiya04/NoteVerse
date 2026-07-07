@@ -8,35 +8,41 @@ import SearchBar from "../components/SearchBar";
 export default function Home () {
     const[notes, setNotes] = useState( JSON.parse(localStorage.getItem("notes")) || []);
     const [editingId, setEditingId] = useState(null);
-    const [editingText, setEditingText] = useState("");
+    const [editingTitle, setEditingTitle] = useState("");
+    const [editingContent, setEditingContent] = useState("");
     const [searchText, setSearchText] = useState("");
     const [sortOrder, setSortOrder] = useState("newest");
 
-    const addNote = (text) => {
+    const addNote = (title, content) => {
         if(editingId !== null){
             const updatedNotes = notes.map((note) => note.id === editingId ? 
-                { ...note, text}
+                { ...note, title, content}
                 : note
             );
             setNotes(updatedNotes);
             setEditingId(null);
-            setEditingText("");
+            setEditingTitle("");
+            setEditingContent("");
 
         }else{
-            setNotes((prevNotes) => [...prevNotes, {id: Date.now(), text, createdAt: new Date().toISOString(), pinned: false}]);
+            setNotes((prevNotes) => [...prevNotes, {id: Date.now(), title, content, createdAt: new Date().toISOString(), pinned: false}]);
         }
     };
 
     const editNote = (id, note) => {
         setEditingId(id);
-        setEditingText(note.text);
+        setEditingTitle(note.title);
+        setEditingContent(note.content);
     }
 
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
     }, [notes]);
 
-    const filteredNotes = notes.filter((note) => note.text.toLowerCase().includes(searchText.toLowerCase()));
+    const filteredNotes = notes.filter((note) =>
+        note.title.toLowerCase().includes(searchText.toLowerCase()) ||
+        note.content.toLowerCase().includes(searchText.toLowerCase())
+    );
 
     const sortedNotes = [...filteredNotes];
     sortedNotes.sort((a, b) => {
@@ -98,10 +104,12 @@ export default function Home () {
                             </button>
                         </div>
                     </div>
-                    <NoteInput 
-                        onAdd={addNote} 
-                        editingText={editingText} 
-                        setEditingText={setEditingText} 
+                    <NoteInput
+                        onAdd={addNote}
+                        editingTitle={editingTitle}
+                        setEditingTitle={setEditingTitle}
+                        editingContent={editingContent}
+                        setEditingContent={setEditingContent}
                         editingId={editingId}
                     />
                     <NoteList 

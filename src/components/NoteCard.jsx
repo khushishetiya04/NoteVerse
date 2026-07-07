@@ -1,36 +1,55 @@
+import {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import "./NoteCard.css";
 
 export default function NoteCard({ note, onDelete, onEdit, onPin }) {
+    const [showMenu, setShowMenu] = useState(false);
+    const navigate = useNavigate();
+
     return (
         <div className="note-card">
+            <div className="note-content" style={{cursor: "pointer"}} onClick={() => navigate(`/note/${note.id}`)}>
+                <div className="note-header">
+                    <h3 className="note-title">
+                        {note.pinned && "📌 "}
+                        {note.title}
+                    </h3>
+                    <p className="note-date">
+                        🕒 {new Date(note.createdAt).toLocaleString()}
+                    </p>
+                </div>
 
-            <div className="note-header">
-                <h3>
-                    {note.pinned && "📌 "}
-                    {note.text}
-                </h3>
-
-                <p className="note-date">
-                    🕒 {new Date(note.createdAt).toLocaleString()}
+                <p className="note-preview">
+                    {note.content.length > 120
+                        ? note.content.substring(0, 120) + "..."
+                        : note.content}
                 </p>
             </div>
 
             <div className="note-actions">
-
-                <button className="pin-btn" onClick={onPin}>
-                    {note.pinned ? "📌 Unpin" : "📌 Pin"}
+                <button
+                    className="menu-btn"
+                    onClick={() => setShowMenu(!showMenu)}
+                >
+                    ⋮
                 </button>
+                {showMenu && (
+                    <div className="dropdown-menu">
+                        <button onClick={onPin}>
+                            {note.pinned ? "📌 Unpin" : "📌 Pin"}
+                        </button>
 
-                <button className="edit-btn" onClick={onEdit}>
-                    ✏ Edit
-                </button>
+                        <button onClick={onEdit}>
+                            ✏ Edit
+                        </button>
 
-                <button className="delete-btn" onClick={onDelete}>
-                    🗑 Delete
-                </button>
+                        <button onClick={onDelete}>
+                            🗑 Delete
+                        </button>
 
+                    </div>
+                )}
             </div>
-
         </div>
     );
 }

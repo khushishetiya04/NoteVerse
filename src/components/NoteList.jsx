@@ -1,3 +1,4 @@
+import "./NoteList.css";
 import NoteCard from "./NoteCard";
 
 export default function NoteList({notes, setNotes, onEdit, onPin}) {
@@ -7,10 +8,16 @@ export default function NoteList({notes, setNotes, onEdit, onPin}) {
     };
     return (
         <>
-            <div>
+            <div className="note-list">
                 {
                     notes.length === 0? 
-                        <p>No notes yet. Add your first note!</p> 
+                        <div className="empty-state">
+                            <div className="empty-icon">📝</div>
+                            <h2>No Notes Yet</h2>
+                            <p>
+                                Start capturing your ideas, study notes,tasks or inspirations.
+                            </p>
+                        </div>
                         : notes.map((note) => ( 
                             <NoteCard 
                                 note={note} 

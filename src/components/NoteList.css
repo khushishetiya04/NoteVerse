@@ -1,0 +1,24 @@
+.note-list{
+    margin-top:25px;
+}
+
+.empty-state{
+    text-align:center;
+    padding:70px 20px;
+}
+
+.empty-icon{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.empty-state h2{
+    margin:0;
+    color:#374151;
+}
+
+.empty-state p{
+    color:#6B7280;
+    margin-top:12px;
+    line-height:1.6;
+}

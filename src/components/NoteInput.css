@@ -1,13 +1,43 @@
 .note-input-container{
     margin:30px 0;
     display:flex;
+    flex-direction: column;
     gap:15px;
-    align-items:center;
+}
+
+.note-title-input{
+    width:100%;
+    padding:14px 18px;
+    font-size:18px;
+    font-weight:600;
+    font-family:inherit;
+    border:1px solid #D1D5DB;
+    border-radius:14px;
+    outline:none;
+    transition:all .25s ease;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.note-title-input:focus{
+    border-color:#4F46E5;
+    box-shadow: 0 0 0 4px rgba(79,70,229,.15);
+}
+
+.note-title-input::placeholder{
+    color:#9CA3AF;
+}
+
+.input-fields{
+    width:100%;
 }
 
 .note-input{
     flex:1;
-    padding:15px 18px;
+    width:100%;
+    min-height:160px;
+    resize:none;
+    padding:16px 20px;
     font-size:16px;
     font-family:inherit;
     border:1px solid #D1D5DB;
@@ -15,6 +45,11 @@
     outline:none;
     transition:.25s;
     box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.note-input::placeholder{
+    color:#9CA3AF;
+    line-height:1.6;
 }
 
 .note-input:focus{
@@ -32,12 +67,14 @@
     font-size:15px;
     font-weight:600;
     cursor:pointer;
-    transition:.25s;
+    transition:all .25s ease;
+    align-self: flex-end;
 }
 
 .add-note-btn:hover{
-    background:#4338CA;
+     background:#4338CA;
     transform:translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79,70,229,.25);
 }
 
 .add-note-btn:active{

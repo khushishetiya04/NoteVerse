@@ -2,32 +2,52 @@ import "./NoteInput.css";
 
 export default function NoteInput({
     onAdd,
-    editingText,
-    setEditingText,
+    editingTitle,
+    setEditingTitle,
+    editingContent,
+    setEditingContent,
     editingId,
 }) {
 
-    const handleChange = (event) => {
-        setEditingText(event.target.value);
+    const handleTitleChange = (event) => {
+        setEditingTitle(event.target.value);
+    };
+
+    const handleContentChange = (event) => {
+        setEditingContent(event.target.value);
     };
 
     const handleAdd = () => {
-        if (editingText.trim() === "") return;
+        if (
+            editingTitle.trim() === "" ||
+            editingContent.trim() === ""
+        ) return;
 
-        onAdd(editingText);
-        setEditingText("");
+        onAdd(editingTitle, editingContent);
+
+        setEditingTitle("");
+        setEditingContent("");
     };
 
     return (
         <div className="note-input-container">
-
-            <textarea
-                className="note-input"
-                rows="3"
-                placeholder="Write your note, idea or study point..."
-                value={editingText}
-                onChange={handleChange}
-            />
+            <div className="input-fields">
+                <input
+                    className="note-title-input"
+                    type="text"
+                    placeholder="Title"
+                    value={editingTitle}
+                    onChange={handleTitleChange}
+                    autoFocus
+                />
+                <textarea
+                    className="note-input"
+                    rows="5"
+                    placeholder="Write your note..."
+                    value={editingContent}
+                    onChange={handleContentChange}
+                />
+            </div>
 
             <button
                 className="add-note-btn"
