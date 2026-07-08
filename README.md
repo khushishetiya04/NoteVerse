@@ -1,30 +1,39 @@
 # 📝 NoteVerse
 
-A modern Notes Application built with **React** that helps users create, organize, and manage notes efficiently.
+🔗 Live Demo: https://notes-aqc8u4rdj-khushishetiya.vercel.app
+
+A clean and modern **React Notes Application** that helps users create, organize, search, and manage notes efficiently. Notes are automatically stored in the browser using **Local Storage**, ensuring data persists even after refreshing the page.
+
+---
 
 ## ✨ Features
 
-- Create notes with title and content
-- Edit existing notes
-- Delete notes
-- Pin and unpin important notes
-- Search notes by title or content
-- Sort notes by newest or oldest
-- View complete note on a separate page
-- Automatically saves notes using Local Storage
-- Responsive and clean UI
+- 📝 Create notes with title and content
+- ✏️ Edit existing notes
+- 🗑️ Delete notes
+- 📌 Pin and unpin important notes
+- 🔍 Search notes by title or content
+- 📅 Sort notes by newest or oldest
+- 📖 Open notes on a dedicated page to view full content
+- 💾 Automatic Local Storage persistence
+- 🎨 Clean, modern and responsive UI
 
-## 🛠 Tech Stack
+---
+
+## 🛠️ Tech Stack
 
 - React
 - React Router DOM
 - JavaScript (ES6+)
 - CSS3
+- HTML5
 - Local Storage
+
+---
 
 ## 📂 Project Structure
 
-```
+```text
 src/
 │
 ├── components/
@@ -39,8 +48,11 @@ src/
 │   └── ViewNote.jsx
 │
 ├── App.jsx
-└── main.jsx
+├── main.jsx
+└── index.css
 ```
+
+---
 
 ## 🚀 Installation
 
@@ -50,10 +62,10 @@ Clone the repository
 git clone https://github.com/khushishetiya04/notes-app.git
 ```
 
-Go to the project folder
+Go to the project directory
 
 ```bash
-cd Notes-App
+cd notes-app
 ```
 
 Install dependencies
@@ -68,25 +80,34 @@ Start the development server
 npm run dev
 ```
 
+---
+
 ## 📸 Screenshots
 
-### Home Page
+### 🏠 Home Page
+
 ![Home](./screenshots/home.png)
 
-### View Note
+### 📖 View Note
+
 ![View Note](./screenshots/view-note.png)
 
-## 📌 Future Improvements
+---
 
-- Dark Mode
-- Categories
-- Favorites
-- Export Notes
-- Import Notes
-- Toast Notifications
-- Responsive Mobile Design
+## 💡 Future Improvements
+
+- 🌙 Dark Mode
+- 🏷️ Categories & Tags
+- ⭐ Favorites
+- 📤 Export Notes
+- 📥 Import Notes
+- 🔔 Toast Notifications
+- 📱 Better Mobile Responsiveness
+
+---
 
 ## 👩‍💻 Author
 
 **Khushi Shetiya**
+
 GitHub: https://github.com/khushishetiya04
