@@ -59,13 +59,13 @@ src/
 Clone the repository
 
 ```bash
-git clone https://github.com/khushishetiya04/notes-app.git
+git clone https://github.com/khushishetiya04/NoteVerse.git
 ```
 
 Go to the project directory
 
 ```bash
-cd notes-app
+cd NoteVerse
 ```
 
 Install dependencies
