@@ -1,6 +1,6 @@
 # 📝 NoteVerse
 
-🔗 Live Demo: https://notes-aqc8u4rdj-khushishetiya.vercel.app
+🔗 Live Demo: https://notes-app-ecru-omega.vercel.app/
 
 A clean and modern **React Notes Application** that helps users create, organize, search, and manage notes efficiently. Notes are automatically stored in the browser using **Local Storage**, ensuring data persists even after refreshing the page.
 
